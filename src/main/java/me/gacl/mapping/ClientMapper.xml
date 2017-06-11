@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.gacl.dao.ClientMapper">
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Client">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+    <result column="newAddress" jdbcType="VARCHAR" property="newaddress" />
+  </resultMap>
+  <insert id="insert" parameterType="me.gacl.domain.Client">
+    insert into client (id, name, telphone, 
+      newAddress)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{newaddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Client">
+    insert into client
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="telphone != null">
+        telphone,
+      </if>
+      <if test="newaddress != null">
+        newAddress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null">
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="newaddress != null">
+        #{newaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

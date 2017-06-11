@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.gacl.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="me.gacl.domain.Goods">
+    <id column="id" jdbcType="CHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="uid" jdbcType="CHAR" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="me.gacl.domain.Goods">
+    insert into goods (id, name, uid)
+    values (#{id,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{uid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="me.gacl.domain.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.gacl.domain.Goods">
+    update goods
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.gacl.domain.Goods">
+    update goods
+    set name = #{name,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  
+   <select id="selectTest" resultMap="BaseResultMap">
+    select 
+    *
+    from goods order by uid desc
+  </select>
+  
+</mapper>
