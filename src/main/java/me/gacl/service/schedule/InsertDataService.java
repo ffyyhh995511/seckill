@@ -2,15 +2,10 @@ package me.gacl.service.schedule;
 
 import javax.annotation.Resource;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import me.gacl.dao.StudentTestMapper;
 import me.gacl.dao.TeacherTestMapper;
-import me.gacl.domain.StudentTest;
-import me.gacl.domain.TeacherTest;
-import me.gacl.util.RandomCodeUtil;
-import me.gacl.util.UUIDUtil;
 
 /**
  * 定时插入数据库，用于数据库的性能分析
